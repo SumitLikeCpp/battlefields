@@ -64,6 +64,7 @@ def render_battleships(board_width,board_height,battleships):
         
         
     print(header)
+    
 
 if __name__ == "__main__":
 
