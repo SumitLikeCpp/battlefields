@@ -1,3 +1,29 @@
+# battleships design
+# coordinates -> eg: [(1,1) , (1,3)]
+# Head locations
+# Length
+# Direction -> eg: "N"
+class Battleship(object):
+
+    @staticmethod
+    def build(head,length,direction):
+        body = []
+        for i in range(length):
+            if direction == "N":
+                el = (head[0], head[1] - i)
+            elif direction == "S":
+                el = (head[0], head[1] + i)
+            elif direction == "E":
+                el = (head[0] + i, head[1])
+            elif direction == "W":
+                el = (head[0] - i, head[1])
+            body.append(el)
+        return Battleship(body)
+
+    def __init__(self,body):
+        self.body = body
+
+
 def render(board_width,board_height,shots):
     header = "+" + "-"*board_width + "+"
     print(header)
@@ -16,8 +42,28 @@ def render(board_width,board_height,shots):
 
     print(header)
 
+def render_battleships(board_width,board_height,battleships):
+    header = "+" + "-"*board_width + "+"
+    print(header)
+     
+
+
+
+
+    print(header)
 
 if __name__ == "__main__":
+
+    battleships=[
+        Battleship.build((1,1),2,"N"),
+        Battleship.build((5,8),5,"N"),
+        Battleship.build((3,4),3,"E"),
+    ]
+
+    for b in battleships:
+        print(b.body)
+    exit(1)
+
     shots = []
     while True:
         inp = input("Where You want to shoot? \n")
