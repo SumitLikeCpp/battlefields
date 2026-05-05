@@ -45,11 +45,24 @@ def render(board_width,board_height,shots):
 def render_battleships(board_width,board_height,battleships):
     header = "+" + "-"*board_width + "+"
     print(header)
-     
-
-
-
-
+    
+    #construct empty board
+    board = []
+    for _ in range(board_width):
+        board.append([None for _ in range(board_height)])
+    
+    # add the battleships to the board
+    for b in battleships:
+        for x,y in b.body:
+            board[x][y] = "O"
+    
+    for y in range(board_height):
+        row = []
+        for x in range(board_width):
+            row.append(board[x][y] or " ")
+        print("|" + "".join(row) + "|")
+        
+        
     print(header)
 
 if __name__ == "__main__":
@@ -62,7 +75,11 @@ if __name__ == "__main__":
 
     for b in battleships:
         print(b.body)
-    exit(1)
+
+    render_battleships(10,10,battleships)
+    exit(0)
+
+    
 
     shots = []
     while True:
